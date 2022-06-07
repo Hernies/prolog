@@ -1,4 +1,4 @@
-:- module(_,_,[assertions]).
+:- module(_,_,assertions).
 %:- module(modulename,exports,[iso]).
 :- use_module(library(lists)).
 :- use_module(library(aggregates)).
@@ -39,6 +39,10 @@ Mi solución del predicado pots se basa en 2 ideas:
 Mi primera idea fue al darme cuenta que la longitud de la lista Ps mas uno sería igual al exponente mas uno:
 @begin{verbatim}length(Ps)+1=exp@end{verbatim}
 Pero debido a que incrementa demasiado el tiempo de cálculo no es una solución viable par exponentes demasiado grandes.
+
+@subsection{Predicado 1.2 mpart(M,N,P):}
+La solución
+
 ").
 
  %% 1.1
@@ -65,3 +69,5 @@ pots(M,N,Ps):-
     integer(M),
     integer(N),
     potcalc(M,N,1,[1],Ps).
+
+:- pred 
