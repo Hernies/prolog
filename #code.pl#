@@ -41,7 +41,9 @@ Mi primera idea fue al darme cuenta que la longitud de la lista Ps mas uno serí
 Pero debido a que incrementa demasiado el tiempo de cálculo no es una solución viable par exponentes demasiado grandes.
 
 @subsection{Predicado 1.2 mpart(M,N,P):}
-La solución
+La solución hace uso del sistema de backtracking que tiene prolog_flag
+
+
 
 ").
 
@@ -96,4 +98,4 @@ maria(M,N,Npart):-
     findall(X, mpart(M,N,X),Res),
     length(Res,Npart).
     
-    
+
