@@ -41,7 +41,9 @@ Mi primera idea fue al darme cuenta que la longitud de la lista Ps mas uno serí
 Pero debido a que incrementa demasiado el tiempo de cálculo no es una solución viable par exponentes demasiado grandes.
 
 @subsection{Predicado 1.2 mpart(M,N,P):}
-La solución
+La solución hace uso del sistema de backtracking que tiene prolog. 
+
+
 
 ").
 
@@ -55,13 +57,7 @@ La solución
 @var{Potencia} la ultima potencia calculada,
 @var{ListaPotencias} la lista de potencias que se ha calculado, 
 @var{Ps} la lista de potencias a devolver. @includedef{pot/5} ".
-potcalc(M,N,Potencia,Potencias,Potencias):-
-    Potencia*M > N,
-    !.
-    
-potcalc(M,N,OldPotencia,Potencias,Ps):-
-    NuevPotencia is OldPotencia * M,
-    potcalc(M,N,NuevPotencia,[NuevPotencia|Potencias],Ps).
+
 
 :- pred pots(M,N,Ps)
    #"Devuelve en @{Ps} la lista de potencias de @var{M} en orden descendente menores que @var{N}. @includedef{pots/3} ".
@@ -70,6 +66,14 @@ pots(M,N,Ps):-
     integer(M),
     integer(N),
     potcalc(M,N,1,[1],Ps).
+
+potcalc(M,N,Potencia,Potencias,Potencias):-
+    Potencia*M > N,
+    !.
+    
+potcalc(M,N,OldPotencia,Potencias,Ps):-
+    NuevaPotencia is OldPotencia * M,
+    potcalc(M,N,NuevaPotencia,[NuevaPotencia|Potencias],Ps).    
 
 :- pred mpart_aux(Potencias,Contador,Pots)
    #"".
@@ -96,4 +100,17 @@ maria(M,N,Npart):-
     findall(X, mpart(M,N,X),Res),
     length(Res,Npart).
     
-    
+:- pred arista(N1,N2)
+   #"".
+arista(_,_).
+
+:- pred guardar_grafo(Grafo)
+   #"".
+guardar_grafo(G):-
+    retractall(arista(_,_)),
+    assert_lista_aristas(G).
+
+assert_lista_aristas(Arista|Aristas):-
+    assert(Arista),
+    assert_lista_aristas(Aristas).
+

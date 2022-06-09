@@ -98,4 +98,3 @@ maria(M,N,Npart):-
     findall(X, mpart(M,N,X),Res),
     length(Res,Npart).
     
-
